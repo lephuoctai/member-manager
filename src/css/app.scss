@@ -1,5 +1,6 @@
-.page {
-  padding: 16px 16px 96px 16px;
+/* Reset page padding for full-screen layout */
+.zaui-page {
+  padding: 0 !important;
 }
 
 .section-container {
@@ -12,3 +13,11 @@
 .zaui-list-item {
   cursor: pointer;
 }
+
+/* Ensure full height pages */
+html, body, #app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+

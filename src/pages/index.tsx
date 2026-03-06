@@ -1,37 +1,30 @@
-import { openMiniApp } from "zmp-sdk";
-import { Box, Button, Icon, Page, Text } from "zmp-ui";
-
-import Clock from "@/components/clock";
-import Logo from "@/components/logo";
-import bg from "@/static/bg.svg";
+import React from "react";
+import { Page } from "zmp-ui";
+import { useAtom } from "jotai";
+import { currentStudentAtom } from "@/state/auth";
+import { StatusEnum } from "@/types/member";
+import QRCard from "@/components/qr-card";
+import BannedNotice from "@/components/banned-notice";
+import FloatingMenu from "@/components/floating-menu";
 
 function HomePage() {
+  const [currentStudent] = useAtom(currentStudentAtom);
+
+  if (!currentStudent) return null;
+
+  const isBanned = currentStudent.status === StatusEnum.banned;
+
   return (
-    <Page
-      className="flex flex-col items-center justify-center space-y-6 bg-cover bg-center bg-no-repeat bg-white dark:bg-black"
-      style={{
-        backgroundImage: `url(${bg})`,
-      }}
-    >
-      <Box></Box>
-      <Box textAlign="center" className="space-y-1">
-        <Text.Title size="xLarge">Hello world!</Text.Title>
-        <Clock />
-      </Box>
-      <Button
-        variant="primary"
-        suffixIcon={<Icon icon="zi-more-grid" />}
-        onClick={() => {
-          openMiniApp({
-            appId: "1070750904448149704", // ZaUI Components
-          });
-        }}
-      >
-        ZaUI Component Library
-      </Button>
-      <Logo className="fixed bottom-8" />
+    <Page className="flex flex-col bg-white dark:bg-black" style={{ height: "100vh", overflow: "hidden" }}>
+      {isBanned ? (
+        <BannedNotice student={currentStudent} />
+      ) : (
+        <QRCard student={currentStudent} />
+      )}
+      <FloatingMenu />
     </Page>
   );
 }
 
 export default HomePage;
+
