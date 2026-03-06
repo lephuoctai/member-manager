@@ -71,3 +71,14 @@ export async function unbanStudent(docId: string): Promise<void> {
   });
 }
 
+export async function batchBanStudents(
+  docIds: string[],
+  until: number | null
+): Promise<void> {
+  await Promise.all(docIds.map((id) => banStudent(id, until)));
+}
+
+export async function batchUnbanStudents(docIds: string[]): Promise<void> {
+  await Promise.all(docIds.map((id) => unbanStudent(id)));
+}
+
