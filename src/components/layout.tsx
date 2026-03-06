@@ -1,5 +1,4 @@
 import React from "react";
-import { getSystemInfo } from "zmp-sdk";
 import {
   AnimationRoutes,
   App,
@@ -7,7 +6,6 @@ import {
   SnackbarProvider,
   ZMPRouter,
 } from "zmp-ui";
-import { AppProps } from "zmp-ui/app";
 import { Box, Spinner, Text } from "zmp-ui";
 
 import { useAuth } from "@/hooks/useAuth";
@@ -22,7 +20,7 @@ const AppContent = () => {
 
   if (isLoading) {
     return (
-      <Box className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-black gap-4">
+      <Box className="flex flex-col items-center justify-center min-h-screen bg-white gap-4">
         <Spinner visible />
         <Text className="text-gray-400 text-sm">Đang tải...</Text>
       </Box>
@@ -49,7 +47,7 @@ const AppContent = () => {
 
 const Layout = () => {
   return (
-    <App theme={getSystemInfo().zaloTheme as AppProps["theme"]}>
+    <App theme="light">
       <SnackbarProvider>
         <AppContent />
       </SnackbarProvider>

@@ -252,7 +252,7 @@ function MembersPage() {
   ).length;
 
   return (
-    <Page className="bg-gray-50 dark:bg-black min-h-screen">
+    <Page className="bg-gray-50 min-h-screen">
       {/* Header */}
       <Box className="bg-blue-600 px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
         {selectionMode ? (

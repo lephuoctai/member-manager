@@ -77,12 +77,19 @@ function FloatingMenu() {
     <>
       {/* Draggable Floating Action Button */}
       <div
-        className="fixed z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg cursor-grab active:cursor-grabbing transition-[left] duration-300"
         style={{
+          position: "fixed",
+          zIndex: 50,
           left: position.x,
           top: position.y,
+          padding: 14,
+          borderRadius: "50%",
           background: "linear-gradient(135deg, #f97316, #ef4444)",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
+          lineHeight: 0,
           touchAction: "none",
+          cursor: "grab",
+          transition: "left 0.3s ease",
         }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}

@@ -67,7 +67,7 @@ function SettingsPage() {
   };
 
   return (
-    <Page className="bg-gray-50 dark:bg-black min-h-screen">
+    <Page className="bg-gray-50 min-h-screen">
       {/* Header */}
       <Box className="bg-blue-600 px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
         <Box
@@ -82,7 +82,7 @@ function SettingsPage() {
       </Box>
 
       {/* Avatar Section */}
-      <Box className="flex flex-col items-center py-6 bg-blue-600 rounded-b-3xl">
+      <Box className="flex flex-col items-center py-6 bg-blue-600 rounded-b-3xl mb-3">
         {zaloUser?.avatar ? (
           <img
             src={zaloUser.avatar}
@@ -102,7 +102,7 @@ function SettingsPage() {
       </Box>
 
       {/* Info Section */}
-      <Box className="px-4 py-4 space-y-3 -mt-4">
+      <Box className="px-4 py-4 space-y-3">
         <Box className="bg-white rounded-2xl p-4 shadow-sm space-y-4">
           <Text className="font-bold text-base text-gray-800 mb-2">
             Thông tin cá nhân

@@ -181,7 +181,7 @@ function MemberDetailPage() {
   }
 
   return (
-    <Page className="bg-gray-50 dark:bg-black min-h-screen">
+    <Page className="bg-gray-50 min-h-screen">
       {/* Header */}
       <Box className="bg-blue-600 px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
         <Box
@@ -196,7 +196,7 @@ function MemberDetailPage() {
       </Box>
 
       {/* Profile Header */}
-      <Box className="bg-blue-600 rounded-b-3xl pb-6 flex flex-col items-center">
+      <Box className="bg-blue-600 rounded-b-3xl pb-6 mb-3 flex flex-col items-center">
         <Box className="w-20 h-20 bg-blue-400 rounded-full flex items-center justify-center border-4 border-white">
           <Text className="text-white text-2xl font-bold">
             {member.firstName.charAt(0).toUpperCase()}
@@ -216,7 +216,7 @@ function MemberDetailPage() {
       </Box>
 
       {/* Info */}
-      <Box className="px-4 py-4 -mt-3">
+      <Box className="px-4 py-4">
         <Box className="bg-white rounded-2xl p-4 shadow-sm space-y-4">
           <InfoRow label="Họ và tên" value={getFullName(member)} />
           <InfoRow label="Mã số sinh viên" value={member.studentId} />

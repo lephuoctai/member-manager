@@ -61,7 +61,8 @@ function RegisterPage() {
   };
 
   return (
-    <Page className="flex flex-col items-center justify-center bg-white dark:bg-black min-h-screen px-6">
+    <Page className="bg-white min-h-screen safe-area-top">
+      <Box className="flex flex-col items-center justify-center min-h-screen px-5">
       <Box className="w-full max-w-sm space-y-6">
         <Box textAlign="center" className="mb-8">
           <Text.Title size="xLarge" className="text-blue-600">
@@ -128,6 +129,7 @@ function RegisterPage() {
         >
           {loading ? <Spinner visible /> : "Đăng Ký"}
         </Button>
+      </Box>
       </Box>
     </Page>
   );

@@ -3,6 +3,17 @@
   padding: 0 !important;
 }
 
+/* Force light theme — ignore Zalo dark mode */
+:root,
+[zaui-theme="dark"] {
+  color-scheme: light !important;
+}
+
+[zaui-theme="dark"] {
+  --zaui-background: #ffffff !important;
+  --zaui-text: #000000 !important;
+}
+
 .section-container {
   padding: 16px;
   background: #ffffff;
