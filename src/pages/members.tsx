@@ -102,6 +102,7 @@ function MembersPage() {
       {/* Search */}
       <Box className="px-4 pt-4 pb-2">
         <Input
+          className="px-4"
           placeholder="Tìm theo họ tên hoặc MSSV..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}

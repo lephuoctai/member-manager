@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { Box, Icon, Sheet, Text } from "zmp-ui";
 import { useNavigate } from "zmp-ui";
 import { useAtom } from "jotai";
@@ -9,6 +9,47 @@ function FloatingMenu() {
   const [visible, setVisible] = useState(false);
   const [currentStudent] = useAtom(currentStudentAtom);
   const navigate = useNavigate();
+
+  // Draggable state
+  const [position, setPosition] = useState({ x: window.innerWidth - 68, y: window.innerHeight - 160 });
+  const isDragging = useRef(false);
+  const hasMoved = useRef(false);
+  const dragStart = useRef({ x: 0, y: 0 });
+  const btnSize = 56;
+
+  const clamp = (val: number, min: number, max: number) => Math.max(min, Math.min(max, val));
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    isDragging.current = true;
+    hasMoved.current = false;
+    dragStart.current = { x: touch.clientX - position.x, y: touch.clientY - position.y };
+  }, [position]);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!isDragging.current) return;
+    const touch = e.touches[0];
+    const newX = clamp(touch.clientX - dragStart.current.x, 0, window.innerWidth - btnSize);
+    const newY = clamp(touch.clientY - dragStart.current.y, 0, window.innerHeight - btnSize);
+    hasMoved.current = true;
+    setPosition({ x: newX, y: newY });
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    isDragging.current = false;
+    // Snap to nearest edge (left or right)
+    setPosition((prev) => {
+      const centerX = prev.x + btnSize / 2;
+      const snapX = centerX < window.innerWidth / 2 ? 8 : window.innerWidth - btnSize - 8;
+      return { ...prev, x: snapX };
+    });
+  }, []);
+
+  const handleClick = () => {
+    if (!hasMoved.current) {
+      setVisible(true);
+    }
+  };
 
   const isAdmin = currentStudent?.role === RoleEnum.admin;
 
@@ -34,13 +75,22 @@ function FloatingMenu() {
 
   return (
     <>
-      {/* Floating Action Button */}
-      <Box
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg cursor-pointer active:scale-95 transition-transform"
-        onClick={() => setVisible(true)}
+      {/* Draggable Floating Action Button */}
+      <div
+        className="fixed z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg cursor-grab active:cursor-grabbing transition-[left] duration-300"
+        style={{
+          left: position.x,
+          top: position.y,
+          background: "linear-gradient(135deg, #f97316, #ef4444)",
+          touchAction: "none",
+        }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onClick={handleClick}
       >
-        <Icon icon="zi-setting" className="text-white" size={28} />
-      </Box>
+        <Icon icon="zi-more-grid" className="text-white" size={28} />
+      </div>
 
       {/* Menu Sheet */}
       <Sheet
@@ -64,8 +114,8 @@ function FloatingMenu() {
                   className="flex items-center gap-4 p-4 rounded-xl bg-gray-50 active:bg-gray-100 cursor-pointer transition-colors"
                   onClick={() => handleNavigate(item.path)}
                 >
-                  <Box className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Icon icon={item.icon} className="text-blue-600" size={22} />
+                  <Box className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                    <Icon icon={item.icon} className="text-orange-600" size={22} />
                   </Box>
                   <Text className="font-medium text-base">{item.label}</Text>
                   <Box className="ml-auto">
