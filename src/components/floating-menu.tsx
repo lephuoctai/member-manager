@@ -96,7 +96,17 @@ function FloatingMenu() {
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}
       >
-        <Icon icon="zi-more-grid" className="text-white" size={28} />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" style={{ display: "block" }}>
+          <circle cx="4" cy="4" r="2.5" />
+          <circle cx="12" cy="4" r="2.5" />
+          <circle cx="20" cy="4" r="2.5" />
+          <circle cx="4" cy="12" r="2.5" />
+          <circle cx="12" cy="12" r="2.5" />
+          <circle cx="20" cy="12" r="2.5" />
+          <circle cx="4" cy="20" r="2.5" />
+          <circle cx="12" cy="20" r="2.5" />
+          <circle cx="20" cy="20" r="2.5" />
+        </svg>
       </div>
 
       {/* Menu Sheet */}

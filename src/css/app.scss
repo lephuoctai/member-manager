@@ -14,6 +14,12 @@
   --zaui-text: #000000 !important;
 }
 
+/* Hard-coded safe area for status bar */
+.safe-area-top {
+  padding-top: 44px;
+}
+
+
 .section-container {
   padding: 16px;
   background: #ffffff;

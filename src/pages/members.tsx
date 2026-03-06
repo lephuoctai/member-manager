@@ -254,7 +254,7 @@ function MembersPage() {
   return (
     <Page className="bg-gray-50 min-h-screen">
       {/* Header */}
-      <Box className="bg-blue-600 px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
+      <Box className="zaui-box bg-blue-600 px-4 pt-4 pb-3 flex items-center gap-3 sticky top-0 z-10 safe-area-top">
         {selectionMode ? (
           <>
             <Box

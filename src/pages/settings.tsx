@@ -69,7 +69,7 @@ function SettingsPage() {
   return (
     <Page className="bg-gray-50 min-h-screen">
       {/* Header */}
-      <Box className="bg-blue-600 px-4 py-3 flex items-center gap-3 sticky top-0 z-10">
+      <Box className="bg-blue-600 px-4 py-3 flex items-center gap-3 sticky top-0 z-10 safe-area-top">
         <Box
           className="w-8 h-8 flex items-center justify-center cursor-pointer"
           onClick={() => navigate(-1)}

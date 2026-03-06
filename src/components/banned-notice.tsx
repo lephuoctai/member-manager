@@ -14,7 +14,12 @@ function BannedNotice({ student }: BannedNoticeProps) {
   return (
     <Box className="flex flex-col h-full w-full items-center justify-center px-6">
       <Box className="bg-red-50 border-2 border-red-300 rounded-2xl p-8 text-center space-y-4 max-w-sm w-full">
-        <Box className="text-6xl">🔒</Box>
+        <Box className="flex items-center justify-center">
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style={{ display: "block" }}>
+            <circle cx="32" cy="32" r="28" stroke="#ef4444" strokeWidth="5" fill="none" />
+            <line x1="12" y1="12" x2="52" y2="52" stroke="#ef4444" strokeWidth="5" strokeLinecap="round" />
+          </svg>
+        </Box>
         <Text.Title size="large" className="!text-red-600 font-bold">
           Tài khoản bị khoá
         </Text.Title>

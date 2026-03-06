@@ -15,13 +15,13 @@ function HomePage() {
   const isBanned = currentStudent.status === StatusEnum.banned;
 
   return (
-    <Page className="flex flex-col bg-white" style={{ height: "100vh", overflow: "hidden"}}>
+    <Page className="flex flex-col bg-white safe-area-top" style={{ height: "100vh", overflow: "hidden"}}>
       {isBanned ? (
         <BannedNotice student={currentStudent} />
       ) : (
         <QRCard student={currentStudent} />
       )}
-      <FloatingMenu />
+      {!isBanned && <FloatingMenu />}
     </Page>
   );
 }

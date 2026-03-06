@@ -7,6 +7,7 @@ import {
   updateDoc,
   doc,
   getDoc,
+  deleteField,
 } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Student, StatusEnum } from "@/types/member";
@@ -65,9 +66,10 @@ export async function banStudent(
 }
 
 export async function unbanStudent(docId: string): Promise<void> {
-  await updateStudent(docId, {
+  const ref = doc(db, COLLECTION_NAME, docId);
+  await updateDoc(ref, {
     status: StatusEnum.active,
-    bannedUntil: undefined,
+    bannedUntil: deleteField(),
   });
 }
 
