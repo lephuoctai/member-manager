@@ -217,6 +217,7 @@ function SettingsPage() {
                 fullWidth
                 onClick={handleSave}
                 loading={saving}
+                disabled={saving}
               >
                 Cập nhật
               </Button>

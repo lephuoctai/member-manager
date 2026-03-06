@@ -84,3 +84,17 @@ export async function batchUnbanStudents(docIds: string[]): Promise<void> {
   await Promise.all(docIds.map((id) => unbanStudent(id)));
 }
 
+export async function getStudentByStudentId(
+  studentId: string
+): Promise<Student | null> {
+  const q = query(
+    collection(db, COLLECTION_NAME),
+    where("studentId", "==", studentId)
+  );
+  const snapshot = await getDocs(q);
+  if (snapshot.empty) return null;
+  const docSnap = snapshot.docs[0];
+  return { id: docSnap.id, ...docSnap.data() } as Student;
+}
+
+

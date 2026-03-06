@@ -14,6 +14,8 @@ import RegisterPage from "@/pages/register";
 import SettingsPage from "@/pages/settings";
 import MembersPage from "@/pages/members";
 import MemberDetailPage from "@/pages/member-detail";
+import EventsPage from "@/pages/events";
+import EventDetailPage from "@/pages/event-detail";
 
 const AppContent = () => {
   const { isLoading, isRegistered } = useAuth();
@@ -36,6 +38,8 @@ const AppContent = () => {
             <Route path="/settings" element={<SettingsPage />} />
             <Route path="/members" element={<MembersPage />} />
             <Route path="/member-detail" element={<MemberDetailPage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/event-detail" element={<EventDetailPage />} />
           </>
         ) : (
           <Route path="*" element={<RegisterPage />} />

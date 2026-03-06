@@ -463,6 +463,7 @@ function MembersPage() {
                 prefixIcon={<Icon icon="zi-lock" />}
                 onClick={handleBatchBanStart}
                 loading={batchLoading}
+                disabled={batchLoading}
               >
                 Khoá ({selectedActiveCount})
               </Button>
@@ -475,6 +476,7 @@ function MembersPage() {
                 prefixIcon={<Icon icon="zi-unlock" />}
                 onClick={handleBatchUnbanStart}
                 loading={batchLoading}
+                disabled={batchLoading}
               >
                 Mở khoá ({selectedBannedCount})
               </Button>

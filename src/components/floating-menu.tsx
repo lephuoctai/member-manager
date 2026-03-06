@@ -61,6 +61,12 @@ function FloatingMenu() {
       show: true,
     },
     {
+      label: "Sự kiện",
+      icon: "zi-calendar" as const,
+      path: "/events",
+      show: true,
+    },
+    {
       label: "Thành viên",
       icon: "zi-group" as const,
       path: "/members",

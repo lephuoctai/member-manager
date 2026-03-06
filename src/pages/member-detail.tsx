@@ -59,6 +59,9 @@ function MemberDetailPage() {
   // Unban
   const [showConfirmUnban, setShowConfirmUnban] = useState(false);
 
+  // Exit confirmation when in edit mode
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
+
   const isOwnAccount = currentStudent?.uidZalo === member?.uidZalo;
   const isBanned = member?.status === StatusEnum.banned;
 
@@ -148,6 +151,22 @@ function MemberDetailPage() {
     }
   };
 
+  // === EXIT CONFIRMATION ===
+  const handleBack = () => {
+    if (isEditingRole) {
+      setShowExitConfirm(true);
+    } else {
+      navigate(-1);
+    }
+  };
+
+  const handleExitConfirm = () => {
+    setShowExitConfirm(false);
+    setIsEditingRole(false);
+    setSelectedRole(member?.role || "");
+    navigate(-1);
+  };
+
   const getBanInfoText = () => {
     if (!member) return "";
     if (
@@ -186,7 +205,7 @@ function MemberDetailPage() {
       <Box className="bg-blue-600 px-4 py-3 flex items-center gap-3 sticky top-0 z-10 safe-area-top">
         <Box
           className="w-8 h-8 flex items-center justify-center cursor-pointer"
-          onClick={() => navigate(-1)}
+          onClick={handleBack}
         >
           <Icon icon="zi-arrow-left" className="text-white" size={24} />
         </Box>
@@ -266,6 +285,7 @@ function MemberDetailPage() {
               <Button
                 variant="secondary"
                 fullWidth
+                disabled={savingRole}
                 onClick={() => {
                   setIsEditingRole(false);
                   setSelectedRole(member.role);
@@ -278,6 +298,7 @@ function MemberDetailPage() {
                 fullWidth
                 onClick={handleSaveRole}
                 loading={savingRole}
+                disabled={savingRole}
               >
                 Lưu vai trò
               </Button>
@@ -479,6 +500,31 @@ function MemberDetailPage() {
           <Text className="text-gray-700">
             Xác nhận lần 2: Bạn chắc chắn muốn mở khoá tài khoản{" "}
             <Text className="font-bold inline">{getFullName(member)}</Text>?
+          </Text>
+        </Box>
+      </Modal>
+
+      {/* === EXIT EDIT CONFIRM === */}
+      <Modal
+        visible={showExitConfirm}
+        title="Thoát chế độ chỉnh sửa?"
+        onClose={() => setShowExitConfirm(false)}
+        actions={[
+          {
+            text: "Ở lại",
+            close: true,
+          },
+          {
+            text: "Thoát",
+            highLight: true,
+            danger: true,
+            onClick: handleExitConfirm,
+          },
+        ]}
+      >
+        <Box className="py-2">
+          <Text className="text-gray-700">
+            Các thay đổi chưa lưu sẽ bị mất nếu bạn thoát. Bạn có chắc chắn muốn thoát?
           </Text>
         </Box>
       </Modal>
